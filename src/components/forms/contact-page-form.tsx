@@ -136,10 +136,10 @@ export default function ContactForm() {
       {/* Header */}
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-semibold text-primary">
-          Anúncie sua marca no Portal Palhoça
+          Anúncie sua marca no Portal Florianópolis
         </h1>
         <p className="text-gray-600 max-w-2xl">
-          Faça parte do maior portal de notícias e comércios de Palhoça.
+          Faça parte do maior portal de notícias e comércios de Florianópolis.
           Preencha o formulário abaixo e nossa equipe entrará em contato.
         </p>
       </div>
@@ -332,13 +332,13 @@ export default function ContactForm() {
 
             {/* Status Messages */}
             {submitStatus === "success" && (
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3">
-                <CheckCircle className="text-green-600" size={20} />
+              <div className="bg-secondary/80 border border-secondary rounded-lg p-4 flex items-center gap-3">
+                <CheckCircle className="text-primary" size={20} />
                 <div>
-                  <p className="text-green-800 font-medium">
+                  <p className="text-primary font-medium">
                     Solicitação enviada com sucesso!
                   </p>
-                  <p className="text-green-600 text-sm">
+                  <p className="text-primary text-sm">
                     Nossa equipe entrará em contato em breve.
                   </p>
                 </div>
@@ -364,7 +364,7 @@ export default function ContactForm() {
         {/* Coluna de informações */}
         <div className="space-y-6">
           {/* Card de benefícios */}
-          <div className="bg-secondary rounded-xl p-6 border-1 border-green-100">
+          <div className="bg-secondary/80 rounded-xl p-6 border-1 border-secondary">
             <h3 className="text-xl font-semibold text-primary mb-4">
               Por que anunciar conosco?
             </h3>
@@ -376,7 +376,7 @@ export default function ContactForm() {
                 <div>
                   <h4 className="font-medium text-gray-800">Maior Alcance</h4>
                   <p className="text-gray-600 text-sm">
-                    Chegue a mais clientes em Palhoça e região
+                    Chegue a mais clientes em Florianópolis e região
                   </p>
                 </div>
               </div>

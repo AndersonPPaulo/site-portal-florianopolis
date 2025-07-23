@@ -7,8 +7,6 @@ import PostGridSection from "@/components/posts/sections/post-grid-section";
 import PostGridWwithColumnistSection from "@/components/posts/sections/post-grid-with-columnist-section";
 
 import type { Metadata } from "next";
-import group from "@/assets/Group.png";
-import default_image from "@/assets/default image.webp";
 
 export async function generateMetadata({
   params,
@@ -20,35 +18,35 @@ export async function generateMetadata({
   const faviconUrl = "https://novo.portalpalhoca.com.br/favicon.ico";
 
   return {
-    title: `Notícias sobre ${name.toLocaleUpperCase()} | Portal Palhoça`,
+    title: `Notícias sobre ${name.toLocaleUpperCase()} | Portal Florianópolis`,
     description:
-      "Portal palhoça é um site de notícias que traz as últimas informações sobre a cidade de Palhoça, SC.",
+      "Portal Florianópolis é um site de notícias que traz as últimas informações sobre a cidade de Florianópolis, SC.",
     openGraph: {
       type: "website",
-      siteName: "Portal Palhoça",
-      title: `Notícias sobre ${name.toLocaleUpperCase()} | Portal Palhoça`,
+      siteName: "Portal Florianópolis",
+      title: `Notícias sobre ${name.toLocaleUpperCase()} | Portal Florianópolis`,
       description:
-        "Portal palhoça é um site de notícias que traz as últimas informações sobre a cidade de Palhoça, SC.",
+        "Portal Florianópolis é um site de notícias que traz as últimas informações sobre a cidade de Florianópolis, SC.",
       images: [
         {
           url: faviconUrl,
           width: 32,
           height: 32,
-          alt: "Portal Palhoça",
+          alt: "Portal Florianópolis",
         },
       ],
     },
     twitter: {
       card: "summary",
-      title: `Notícias sobre ${name.toLocaleUpperCase()} | Portal Palhoça`,
+      title: `Notícias sobre ${name.toLocaleUpperCase()} | Portal Florianópolis`,
       description:
-        "Portal palhoça é um site de notícias que traz as últimas informações sobre a cidade de Palhoça, SC.",
+        "Portal Florianópolis é um site de notícias que traz as últimas informações sobre a cidade de Florianópolis, SC.",
       images: [
         {
           url: faviconUrl,
           width: 32,
           height: 32,
-          alt: "Portal Palhoça",
+          alt: "Portal Florianópolis",
         },
       ],
     },

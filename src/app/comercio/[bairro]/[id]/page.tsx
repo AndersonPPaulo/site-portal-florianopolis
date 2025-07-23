@@ -289,7 +289,7 @@ export default function ComercioDetails() {
             href="/comercio"
             className="hover:text-red-600 transition-colors"
           >
-            Comércios de Palhoça
+            Comércios de Florianópolis
           </Link>
           <span className="text-gray-400">›</span>
           <Link
@@ -380,7 +380,7 @@ export default function ComercioDetails() {
               {/* Botão WhatsApp com analytics */}
               {company.linkWhatsapp && (
                 <Button
-                  className="bg-green-200 hover:bg-green-100 cursor-pointer mt-6 rounded-4xl px-4 py-2 text-green-600 flex items-center gap-2"
+                  className="bg-[#e5f2f9] hover:bg-[#e5f2f9]/80 cursor-pointer mt-6 rounded-4xl px-4 py-2 text-primary flex items-center gap-2"
                   variant="default"
                   onClick={handleWhatsAppClick}
                 >

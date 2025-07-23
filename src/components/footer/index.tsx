@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/assets/Group.png";
+import logo from "@/assets/Group.svg";
 import { Facebook, Instagram } from "lucide-react";
 import ButtonCTAWhatsAppButton from "../custom-button/cta-whatsapp-group-button";
 
@@ -10,72 +10,74 @@ export function Footer() {
       <div className="flex flex-col justify-between px-4">
         <div className="flex flex-col md:flex-row mx-auto justify-between w-full p-4 gap-8">
           {/* Logo and description */}
-          <div className="max-w-[380px]">
+          <div className="max-w-[380px] ">
             <Link href="#" className="flex items-center">
-            <Image src={logo} alt="Portal Palhoça" width={200} height={50} />
+              <Image src={logo} alt="Portal Florianópolis" width={200} height={50}/>
             </Link>
             <p className="mt-4 text-black font-[400] text-md">
-              Sua fonte completa de notícias e comércios em Palhoça
+              Sua fonte completa de notícias e comércios em Florianópolis
             </p>
             <div className="flex gap-4 mt-4">
               <Link
                 href="#"
-                className="w-8 h-8 p-2 bg-green-500 rounded-full flex items-center justify-center"
+                className="w-8 h-8 p-2 bg-primary rounded-full flex items-center justify-center"
               >
                 <Facebook color="#FFF" />
               </Link>
               <Link
                 href="#"
-                className="w-8 h-8 p-2 bg-green-500 rounded-full flex items-center justify-center"
+                className="w-8 h-8 p-2 bg-primary rounded-full flex items-center justify-center"
               >
                 <Instagram color="#FFF" />
               </Link>
             </div>
           </div>
 
-              {/* Receba nossas notícias mobile*/}
-        <div className="mt-8 px-4 flex flex-col max-w-[340px] lg:hidden">
-          <h3 className="font-semibold text-lg mb-4">Receba nossas notícias</h3>
-          <Link
-            href="#"
-            className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2  rounded-3xl hover:bg-green-200"
-          >
-            <i className="fab fa-whatsapp"></i>
-            Entrar em nosso grupo de WhatsApp
-          </Link>
-        </div>
+          {/* Receba nossas notícias mobile*/}
+          <div className="mt-8 px-4 flex flex-col max-w-[340px] lg:hidden">
+            <h3 className="font-semibold text-lg mb-4">
+              Receba nossas notícias
+            </h3>
+            <Link
+              href="#"
+              className="inline-flex items-center gap-2 bg-secondary text-primary px-4 py-2  rounded-3xl hover:bg-[#e5f2f9]"
+            >
+              <i className="fab fa-whatsapp"></i>
+              Entrar em nosso grupo de WhatsApp
+            </Link>
+          </div>
 
           {/* Sobre o Portal */}
           <div className="mt-6 md:mt-0">
             <h3 className="font-semibold text-lg mb-4">Sobre o Portal</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-gray-600 hover:text-green-500">
+                <Link href="#" className="text-gray-600 hover:text-primary">
                   Quem somos
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-600 hover:text-green-500">
+                <Link href="#" className="text-gray-600 hover:text-primary">
                   Denuncie
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-600 hover:text-green-500">
+                <Link href="#" className="text-gray-600 hover:text-primary">
                   Fale conosco
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-600 hover:text-green-500">
+                <Link href="#" className="text-gray-600 hover:text-primary">
                   Imprensa
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-600 hover:text-green-500">
+                <Link href="#" className="text-gray-600 hover:text-primary">
                   SAC
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-600 hover:text-green-500">
+                <Link href="#" className="text-gray-600 hover:text-primary">
                   Segurança e privacidade
                 </Link>
               </li>
@@ -91,7 +93,7 @@ export function Footer() {
                   <li>
                     <Link
                       href="/noticia/agenda"
-                      className="text-gray-600 hover:text-green-500"
+                      className="text-gray-600 hover:text-primary"
                     >
                       Agenda
                     </Link>
@@ -99,7 +101,7 @@ export function Footer() {
                   <li>
                     <Link
                       href="/noticia/comunidade"
-                      className="text-gray-600 hover:text-green-500"
+                      className="text-gray-600 hover:text-primary"
                     >
                       Comunidade
                     </Link>
@@ -107,7 +109,7 @@ export function Footer() {
                   <li>
                     <Link
                       href="/noticia/economia"
-                      className="text-gray-600 hover:text-green-500"
+                      className="text-gray-600 hover:text-primary"
                     >
                       Economia
                     </Link>
@@ -115,7 +117,7 @@ export function Footer() {
                   <li>
                     <Link
                       href="/noticia/educacao"
-                      className="text-gray-600 hover:text-green-500"
+                      className="text-gray-600 hover:text-primary"
                     >
                       Educação
                     </Link>
@@ -123,7 +125,7 @@ export function Footer() {
                   <li>
                     <Link
                       href="/noticia/esporte"
-                      className="text-gray-600 hover:text-green-500"
+                      className="text-gray-600 hover:text-primary"
                     >
                       Esporte
                     </Link>
@@ -131,7 +133,7 @@ export function Footer() {
                   <li>
                     <Link
                       href="/noticia/estilo"
-                      className="text-gray-600 hover:text-green-500"
+                      className="text-gray-600 hover:text-primary"
                     >
                       Estilo
                     </Link>
@@ -143,7 +145,7 @@ export function Footer() {
                   <li>
                     <Link
                       href="/noticia/politica"
-                      className="text-gray-600 hover:text-green-500"
+                      className="text-gray-600 hover:text-primary"
                     >
                       Polícia
                     </Link>
@@ -151,7 +153,7 @@ export function Footer() {
                   <li>
                     <Link
                       href="/noticia/policia"
-                      className="text-gray-600 hover:text-green-500"
+                      className="text-gray-600 hover:text-primary"
                     >
                       Política
                     </Link>
@@ -159,7 +161,7 @@ export function Footer() {
                   <li>
                     <Link
                       href="/noticia/saude"
-                      className="text-gray-600 hover:text-green-500"
+                      className="text-gray-600 hover:text-primary"
                     >
                       Saúde
                     </Link>
@@ -167,7 +169,7 @@ export function Footer() {
                   <li>
                     <Link
                       href="/noticia/transito"
-                      className="text-gray-600 hover:text-green-500"
+                      className="text-gray-600 hover:text-primary"
                     >
                       Trânsito
                     </Link>
@@ -175,7 +177,7 @@ export function Footer() {
                   <li>
                     <Link
                       href="/noticia/variedades"
-                      className="text-gray-600 hover:text-green-500"
+                      className="text-gray-600 hover:text-primary"
                     >
                       Variedades
                     </Link>
@@ -192,7 +194,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/comercio"
-                  className="text-gray-600 hover:text-green-500"
+                  className="text-gray-600 hover:text-primary"
                 >
                   Buscador de comércios
                 </Link>
@@ -204,12 +206,12 @@ export function Footer() {
         {/* Receba nossas notícias */}
         <div className="mt-8 px-4 hidden lg:flex lg:flex-col">
           <h3 className="font-semibold text-lg mb-4">Receba nossas notícias</h3>
-          <ButtonCTAWhatsAppButton/>
+          <ButtonCTAWhatsAppButton />
         </div>
 
         {/* Copyright */}
         <div className="mt-12 pt-4 text-center text-sm text-gray-600">
-          Copyright © 2025 Portal Palhoça | Todos os direitos reservados
+          Copyright © 2025 Portal Florianópolis | Todos os direitos reservados
         </div>
       </div>
     </footer>

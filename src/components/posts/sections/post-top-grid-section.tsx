@@ -8,6 +8,7 @@ import { ArticleContext } from "@/provider/article";
 import { ArticleAnalyticsContext } from "@/provider/analytics/article";
 import { formatDate } from "@/utils/formatDate";
 import normalizeTextToslug from "@/utils/normalize-text-to-slug";
+import default_image from "@/assets/default image.webp";
 
 export default function PostTopGridSection() {
   const pathname = usePathname();
@@ -151,7 +152,7 @@ export default function PostTopGridSection() {
       {/* Header */}
       <div className="flex items-center justify-between ">
         <h2 className="text-2xl font-semibold text-primary">
-          Top Portal Palhoça
+          Top Portal Florianópolis
         </h2>
       </div>
 
@@ -172,7 +173,7 @@ export default function PostTopGridSection() {
             >
               <div className="relative min-w-[300px] md:w-[405px] h-[310px] rounded-md overflow-hidden">
                 <Image
-                  src={post.thumbnail?.url}
+                  src={post.thumbnail?.url || default_image}
                   alt={
                     post.title ||
                     post.thumbnail.description ||

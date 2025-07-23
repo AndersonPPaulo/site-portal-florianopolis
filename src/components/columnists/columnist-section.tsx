@@ -23,7 +23,7 @@ export const ColumnistsSection = () => {
 
   return (
     <div className="p-4 rounded-xl shadow-sm max-w-[420px]">
-      <h2 className="text-green-700 text-xl font-semibold mb-3">Colunistas</h2>
+      <h2 className="text-primary text-xl font-semibold mb-3">Colunistas</h2>
       <ul className="flex flex-col gap-4">
         {listArticlesColumnists?.slice(0,4).map((col, index) => (
           <li

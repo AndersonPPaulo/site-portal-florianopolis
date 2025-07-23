@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import logo from "@/assets/Group.png";
+import logo from "@/assets/Group.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
@@ -50,7 +50,11 @@ export default function Header() {
 
           <div className="flex items-center lg:space-x-4 mx-auto lg:mx-0">
             <Link href="/" className="flex items-center">
-              <Image src={logo} alt="Logo" className="h-10 min-w-[159px]" />
+              <Image
+                src={logo}
+                alt="Logo"
+                className="h-10 min-w-[159px] max-w-[160px]"
+              />
             </Link>
           </div>
 
@@ -149,7 +153,13 @@ export default function Header() {
 
       {/* 🌱 PARTE QUE NÃO É FIXA */}
       {!isMenuOpen && (
-        <div className={`${!isHiddenMobileTabs ? "mb-4 mt-[160px] lg:mt-0" : "mb-4 mt-[90px] lg:mt-0"}`}>
+        <div
+          className={`${
+            !isHiddenMobileTabs
+              ? "mb-4 mt-[160px] lg:mt-0"
+              : "mb-4 mt-[90px] lg:mt-0"
+          }`}
+        >
           {/* mt-[130px]: espaço para header fixo (ajuste conforme altura real do header fixo) */}
           {isContatoPath ? (
             <div className="text-center py-4"></div>

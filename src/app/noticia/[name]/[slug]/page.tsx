@@ -20,18 +20,18 @@ export async function generateMetadata({
 
   if (!article) {
     return {
-      title: "Noticias Portal Palhoça",
+      title: "Noticias Portal Florianópolis",
       description:
         "Essa notícia foi encontrada, porem pode ter ocorrido algum erro ao carregar.",
     };
   }
 
   return {
-    title: `${article.title} | Portal Palhoça`,
+    title: `${article.title} | Portal Florianópolis`,
     description: article.resume_content,
     openGraph: {
       type: "article",
-      siteName: "Portal Palhoça",
+      siteName: "Portal Florianópolis",
       title: article.title,
       description: article.resume_content,
       images: [

@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Buscador de comércios - Portal Palhoça",
-  description: "O maior buscador de comércios de Palhoça",
+  title: "Buscador de comércios - Portal Florianópolis",
+  description: "O maior buscador de comércios de Florianópolis",
 };
 
 export default function RootLayout({

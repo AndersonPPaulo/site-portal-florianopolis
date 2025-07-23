@@ -97,7 +97,7 @@ export default function ProfileColumnist() {
                     }
                     alt={post && post.title && post.title
                         ? post.title
-                        : "Imagem do portal palhoça"}
+                        : "Imagem do Portal Florianópolis"}
                     fill
                     className="object-cover "
                   />
