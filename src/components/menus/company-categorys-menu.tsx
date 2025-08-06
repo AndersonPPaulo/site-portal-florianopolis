@@ -71,6 +71,9 @@ export default function CompanyCategoryMenu({
   const [showRightArrow, setShowRightArrow] = useState(true);
   const [showMap, setShowMap] = useState(false);
 
+  const isComercioPath =
+    pathname === "/comercio/" || pathname?.startsWith("/comercio/?categoria=");
+
   const toggleMap = () => {
     const newMapState = !showMap;
     setShowMap(newMapState);
@@ -356,9 +359,7 @@ export default function CompanyCategoryMenu({
         {showRightArrow && (
           <div
             className={`absolute ${
-              pathname?.startsWith("/comercio/detalhes")
-                ? "right-0"
-                : "right-33"
+              !isComercioPath ? "right-0" : "right-33"
             } h-full hidden lg:flex items-center justify-center z-30`}
           >
             <div
