@@ -209,6 +209,7 @@ export default function ListArticlesByCategory() {
                       : "Imagem do Portal Florianópolis"
                   }
                   fill
+                  unoptimized
                   className="object-cover"
                 />
               </div>

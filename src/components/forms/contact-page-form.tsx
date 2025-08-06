@@ -431,7 +431,7 @@ export default function ContactForm() {
               </div>
               <div className="flex items-center gap-3 text-gray-600">
                 <Mail size={18} className="text-primary" />
-                <span>comercial@portalpalhoca.com.br</span>
+                <span>comercial@portalflorianopolis.com.br</span>
               </div>
             </div>
             <p className="text-gray-500 text-sm mt-4">

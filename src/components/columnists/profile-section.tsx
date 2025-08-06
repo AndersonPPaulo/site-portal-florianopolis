@@ -53,6 +53,7 @@ export default function ProfileColumnist() {
                   : default_image
               }
               width={140}
+              unoptimized
               height={140}
               alt="Imagem perfil do colunista"
               className="w-[64px] h-[64px] md:w-[120px] md:h-[120px] rounded-lg"
@@ -99,6 +100,7 @@ export default function ProfileColumnist() {
                         ? post.title
                         : "Imagem do Portal Florianópolis"}
                     fill
+                    unoptimized
                     className="object-cover "
                   />
                 </div>
@@ -148,6 +150,7 @@ export default function ProfileColumnist() {
                     }
                     alt={post.thumbnail?.description ?? "Imagem da notícia"}
                     fill
+                    unoptimized
                     className="object-cover"
                   />
                 </div>

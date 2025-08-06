@@ -15,7 +15,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { name } = await params;
 
-  const faviconUrl = "https://novo.portalpalhoca.com.br/favicon.ico";
+  const faviconUrl = "https://novo.portalflorianopolis.com.br/favicon.ico";
 
   return {
     title: `Notícias sobre ${name.toLocaleUpperCase()} | Portal Florianópolis`,

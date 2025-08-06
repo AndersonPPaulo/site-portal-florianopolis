@@ -102,6 +102,7 @@ const PostBanner = () => {
             height={250}
             alt={randomBanner.name}
             priority
+            unoptimized
             className="bg-cover rounded-lg min-h-[110px] lg:min-h-[240px] max-h-[110px] lg:max-h-[240px]"
           />
         </Link>

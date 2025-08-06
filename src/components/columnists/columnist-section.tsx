@@ -40,6 +40,7 @@ export const ColumnistsSection = () => {
                   src={col.creator.user_image.url}
                   alt="Imagem de perfil do colunista"
                   layout="fill"
+                  unoptimized
                   className="rounded-full bg-[#d3d3d3]"
                 />
               )}

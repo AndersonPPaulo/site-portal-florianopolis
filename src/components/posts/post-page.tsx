@@ -188,6 +188,7 @@ export default function PostPage() {
                         : "Imagem do Portal Florianópolis"
                     }
                     fill
+                    unoptimized
                     className="object-cover"
                   />
                 ) : (
@@ -195,6 +196,7 @@ export default function PostPage() {
                     src={default_image}
                     alt={"Sem imagem cadastrada na noticia"}
                     fill
+                    unoptimized
                     className="object-cover"
                   />
                 )}
@@ -257,6 +259,7 @@ export default function PostPage() {
                           src={post.thumbnail.url}
                           alt={post.thumbnail.description || "Imagem do artigo"}
                           fill
+                          unoptimized
                           className="object-cover"
                         />
                       )}

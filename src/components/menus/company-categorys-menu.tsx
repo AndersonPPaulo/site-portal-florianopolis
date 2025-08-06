@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 
 // Import icons
 import todosIcon from "@/assets/icons/company/todos.png";
@@ -344,6 +343,7 @@ export default function CompanyCategoryMenu({
                     src={category.icon}
                     alt={category.name}
                     fill
+                    unoptimized
                     style={{ objectFit: "contain" }}
                   />
                 </div>

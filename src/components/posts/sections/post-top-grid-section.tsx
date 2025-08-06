@@ -53,7 +53,7 @@ export default function PostTopGridSection() {
           categoryName: post.category.name,
           articleTitle: post.title,
           gridIndex: index,
-          gridPosition: `${Math.floor(index / 3) + 1}-${(index % 3) + 1}`, 
+          gridPosition: `${Math.floor(index / 3) + 1}-${(index % 3) + 1}`,
           gridSize: topPosts.length,
           gridRows: Math.ceil(topPosts.length / 3),
           gridCols: 3,
@@ -180,6 +180,7 @@ export default function PostTopGridSection() {
                     "Imagem da noticia do portal"
                   }
                   fill
+                  unoptimized
                   className="object-cover"
                 />
               </div>
