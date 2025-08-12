@@ -39,7 +39,7 @@ export default function Header() {
       <header
         className="
           lg:py-3 p-0 xl:px-0 flex flex-col
-          fixed top-0 left-0 right-0 w-full z-40
+          fixed bg-white top-0 left-0 right-0 w-full z-40
           lg:static lg:max-w-[1272px] mx-auto
         "
       >
