@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "O Portal on-line da cidade da Florianópolis - Portal Florianópolis",
+  title: "O Portal on-line da cidade de Florianópolis - Portal Florianópolis",
   description:
     "Informações de contato dos comércios e notícias de Florianópolis",
 };
