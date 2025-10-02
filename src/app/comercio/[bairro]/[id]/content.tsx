@@ -11,6 +11,8 @@ import { Footer } from "@/components/footer";
 import Link from "next/link";
 import { usePublicCompany } from "@/provider/company";
 import { CompanyAnalyticsContext } from "@/provider/analytics/company";
+import DefaultImage from "../../../../assets/no-img.png";
+
 
 // Função para extrair coordenadas do link do Google Maps
 function extractCoordinatesFromMapsLink(
@@ -102,7 +104,7 @@ export default function ComercioDetails() {
             name: apiCompany.name,
             category: apiCompany.company_category?.[0]?.name || "Comércio",
             categories: apiCompany.company_category || [],
-            image: apiCompany.company_image?.url ,
+            image: apiCompany.company_image?.url || DefaultImage,
             phone: apiCompany.phone || "Não informado",
             description: apiCompany.description || "Descrição não disponível",
             hours: apiCompany.openingHours || "Horário não informado",
@@ -276,7 +278,7 @@ export default function ComercioDetails() {
   return (
     <DefaultPage>
       <Header />
-      <div className="max-w-[1272px] mx-auto px-7 py-5">
+      <div className="max-w-[1272px] mx-auto py-5">
         {/* Trilha de navegação */}
         <div className="hidden md:flex items-center gap-2 text-sm text-gray-500 mb-4">
           <Link href="/" className="hover:text-red-600 transition-colors">
@@ -287,7 +289,7 @@ export default function ComercioDetails() {
             href="/comercio"
             className="hover:text-red-600 transition-colors"
           >
-            Comércios de Florianópolis
+            Comércios de Palhoça
           </Link>
           <span className="text-gray-400">›</span>
           <Link
