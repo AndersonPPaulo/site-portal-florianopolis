@@ -258,7 +258,7 @@ export default function ComercioDetails() {
             href="/comercio"
             className="hover:text-red-600 transition-colors"
           >
-            Comércios de Palhoça
+            Comércios de Florianópolis
           </Link>
           <span className="text-gray-400">›</span>
           <Link
