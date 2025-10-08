@@ -48,7 +48,6 @@ interface CommerceMapData {
   address: string;
   company_category: ICompanyCategory[];
   company_image: ICompanyImage | StaticImageData;
-  company_image: ICompanyImage | StaticImageData;
   lat: number;
   lng: number;
 }
@@ -207,12 +206,6 @@ const CommercialMap: React.FC<CommercialMapProps> = ({
                       "id" in commerce.company_image
                         ? commerce.company_image
                         : undefined,
-                    company_image:
-                      typeof commerce.company_image === "object" &&
-                      "id" in commerce.company_image
-                        ? commerce.company_image
-                        : undefined,
-                    id: commerce.id,
                   }}
                 />
               </div>
