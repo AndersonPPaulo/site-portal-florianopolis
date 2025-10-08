@@ -285,16 +285,6 @@ export default function ComercioDetails() {
                 priority
                 unoptimized
               />
-            {/* Imagem principal */}
-            <div className="relative w-[335px] lg:w-[480px] lg:min-w-[480px] h-[355px] rounded-lg overflow-hidden">
-              <Image
-                src={company.image}
-                alt={company.name}
-                fill
-                className="object-cover"
-                priority
-                unoptimized
-              />
             </div>
 
             {/* Detalhes do comércio */}
