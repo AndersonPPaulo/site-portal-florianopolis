@@ -60,8 +60,6 @@ export default function NewsPage() {
       <main>
         <HeroSection />
         <PostGridSection />
-        <PostGridWwithColumnistSection />
-
         <ListArticlesByCategory />
       </main>
       <footer>
