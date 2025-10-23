@@ -155,7 +155,7 @@ export function CompanyGridSection() {
   return (
     <section
       className={`w-full max-w-[1272px] mx-auto px-4 ${
-        !isArticlePage ? "mt-36 p-2" : "mt-10"
+        !isArticlePage ? "mt-36 p-2" : "mt-12"
       }`}
     >
       <div className="w-[106px] h-2 bg-red-500 rounded-full" />
