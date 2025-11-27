@@ -95,7 +95,7 @@ export default function Header() {
               onClick={handleContactsClick}
               className="hidden lg:block text-[#FFF] rounded-full h-10 px-6 bg-primary font-[600] hover:bg-primary/80 cursor-pointer transition duration-300 ease-in-out"
             >
-              Anúncie sua marca
+              Anuncie sua marca
             </Button>
           </div>
         </div>
@@ -125,7 +125,7 @@ export default function Header() {
               onClick={handleContactsClick}
               className="text-[#FFF] rounded-full py-3 px-6 bg-primary font-[600] hover:bg-primary/80 cursor-pointer transition duration-300 ease-in-out w-full mt-2"
             >
-              Anúncie sua marca
+              Anuncie sua marca
             </Button>
           </div>
         )}
