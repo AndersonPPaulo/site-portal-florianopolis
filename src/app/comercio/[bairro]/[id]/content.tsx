@@ -24,7 +24,6 @@ function generateMapsEmbedUrl(
   return `https://maps.google.com/maps?width=100%25&height=300&hl=pt&q=${lat},${lng}+(${encodedName})&t=&z=16&ie=UTF8&iwloc=B&output=embed`;
 }
 
-// Função para normalizar texto para comparação de slugs
 function normalizeText(text: string): string {
   return text
     .toString()
@@ -43,7 +42,6 @@ export default function ComercioDetails() {
   const pathname = usePathname();
   const { loading, error, getCompanyById } = usePublicCompany();
 
-  // Analytics Context
   const companyAnalytics = useContext(CompanyAnalyticsContext);
   const { TrackCompanyView, TrackCompanyMapClick, TrackCompanyWhatsappClick } =
     companyAnalytics || {};
@@ -141,7 +139,6 @@ export default function ComercioDetails() {
       });
     }
 
-    // Pequeno delay para garantir envio do evento antes de abrir link
     setTimeout(() => {
       if (company?.linkWhatsapp) {
         window.open(company.linkWhatsapp, "_blank");
