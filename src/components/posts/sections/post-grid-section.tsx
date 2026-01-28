@@ -21,7 +21,7 @@ export default function PostGridSection() {
   } = useContext(ArticleContext);
 
   const { TrackArticleClick, TrackArticleView } = useContext(
-    ArticleAnalyticsContext
+    ArticleAnalyticsContext,
   );
 
   useEffect(() => {

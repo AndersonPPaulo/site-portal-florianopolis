@@ -21,7 +21,7 @@ export default function PostTopGridSection({
   const { GetPublishedArticles, publishedArticles } =
     useContext(ArticleContext);
   const { TrackArticleClick, TrackArticleView } = useContext(
-    ArticleAnalyticsContext
+    ArticleAnalyticsContext,
   );
 
   useEffect(() => {

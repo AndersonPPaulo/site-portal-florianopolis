@@ -24,7 +24,7 @@ export default function PostGridWwithColumnistSection() {
   } = useContext(ArticleContext);
 
   const { TrackArticleClick, TrackArticleView } = useContext(
-    ArticleAnalyticsContext
+    ArticleAnalyticsContext,
   );
 
   useEffect(() => {
