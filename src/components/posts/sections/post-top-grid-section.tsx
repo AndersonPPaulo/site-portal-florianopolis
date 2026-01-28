@@ -21,7 +21,7 @@ export default function PostTopGridSection({
   const { GetPublishedArticles, publishedArticles } =
     useContext(ArticleContext);
   const { TrackArticleClick, TrackArticleView } = useContext(
-    ArticleAnalyticsContext
+    ArticleAnalyticsContext,
   );
 
   useEffect(() => {
@@ -103,39 +103,37 @@ function TopPostItem({
   TrackArticleView,
   topPostsLength,
 }: any) {
-  const trackingData = {
-    page: pathname,
-    section: "top-portal-grid",
-    position: "grid-item",
-    categoryName: post.category.name,
-    articleTitle: post.title,
-    gridIndex: index,
-    gridPosition: `${Math.floor(index / 3) + 1}-${(index % 3) + 1}`,
-    gridSize: topPostsLength,
-    gridRows: Math.ceil(topPostsLength / 3),
-    gridCols: 3,
-    sortOrder: "newest_first",
-  };
+  // Analytics desativado: top post tracking
+  // const trackingData = {
+  //   page: pathname,
+  //   section: "top-portal-grid",
+  //   position: "grid-item",
+  //   categoryName: post.category.name,
+  //   articleTitle: post.title,
+  //   gridIndex: index,
+  //   gridPosition: `${Math.floor(index / 3) + 1}-${(index % 3) + 1}`,
+  //   gridSize: topPostsLength,
+  //   gridRows: Math.ceil(topPostsLength / 3),
+  //   gridCols: 3,
+  //   sortOrder: "newest_first",
+  // };
 
-  const { ref: topPostRef, registerInitialView } = useArticleViewTracking(
-    post.id,
-    trackingData,
-    TrackArticleView
-  );
+  // const { ref: topPostRef, registerInitialView } = useArticleViewTracking(
+  //   post.id,
+  //   trackingData,
+  //   TrackArticleView
+  // );
 
-  useEffect(() => {
-    registerInitialView();
-  }, [registerInitialView]);
+  // useEffect(() => {
+  //   registerInitialView();
+  // }, [registerInitialView]);
 
   return (
     <Link
       href={`/noticia/${normalizeTextToslug(post.category.name)}/${post.slug}`}
       onClick={() => handleTopGridPostClick(post, index)}
     >
-      <div
-        ref={topPostRef}
-        className="flex flex-col rounded-xl transition hover:shadow-lg hover:transform hover:scale-105"
-      >
+      <div className="flex flex-col rounded-xl transition hover:shadow-lg hover:transform hover:scale-105">
         <div className="relative min-w-[300px] md:w-[405px] h-[310px] rounded-md overflow-hidden">
           {post?.thumbnail?.url ? (
             <Image
