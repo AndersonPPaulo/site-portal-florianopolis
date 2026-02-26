@@ -282,8 +282,7 @@ export const CardCompany = memo(function CardCompany({
 
   // Renderização de categorias
   const renderCategories = useMemo(() => {
-    const { categories, hasMultipleCategories, primaryCategory } =
-      processedData;
+    const { categories } = processedData;
     const maxVisible = variant === "detailed" ? 4 : 3;
     const visibleCategories = categories.slice(0, maxVisible);
     const remainingCount = categories.length - maxVisible;
