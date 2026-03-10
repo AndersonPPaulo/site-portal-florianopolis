@@ -11,7 +11,7 @@ export const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const portalReferer = "www.portalflorianopolis.com.br"
-    // onst portalReferer = "portal1.com.br";
+    // const portalReferer = "portal1.com.br";
 
     // Adiciona o parâmetro portalReferer aos query params
     if (!config.params) {
