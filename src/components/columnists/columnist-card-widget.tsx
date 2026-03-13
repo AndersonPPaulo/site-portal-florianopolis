@@ -17,7 +17,7 @@ export default function ColumnistCardWidget({
   const { GetColumnists, columnists, loading } = useContext(ColumnistContext);
 
   useEffect(() => {
-    GetColumnists(3);
+    GetColumnists(4);
   }, []);
 
   return (
@@ -72,7 +72,7 @@ export default function ColumnistCardWidget({
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="text-sm font-semibold text-gray-800 truncate">
-                       {columnist.topic}
+                      {columnist.topic}
                     </h4>
                     {columnist.topic && (
                       <p className="text-xs text-gray-600 truncate">
