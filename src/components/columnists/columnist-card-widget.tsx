@@ -28,7 +28,7 @@ export default function ColumnistCardWidget({
           : "min-w-[300px] md:w-[264px] md:min-w-[260px]"
       }`}
     >
-      <h3 className="text-2xl font-bold text-primary mb-4">Colunistas</h3>
+      <h3 className="text-2xl font-bold text-primary mb-1">Colunistas</h3>
 
       <div className="flex flex-col">
         {loading ? (
