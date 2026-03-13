@@ -100,21 +100,9 @@ export const ColumnistProvider = ({ children }: { children: ReactNode }) => {
   ) => {
     setLoading(true);
     try {
-      // Primeiro tenta com status PUBLISHED
-      let response = await api.get(
+      const response = await api.get(
         `/article-author/${columnistId}?page=${page}&limit=${limit}&status=PUBLISHED`,
       );
-      console.log("Response completo da API (com PUBLISHED):", response);
-      console.log("Response.data:", response.data);
-      
-      // Se não retornou artigos, tenta sem o filtro de status
-      if (!response.data?.data || response.data.data.length === 0) {
-        console.log("Nenhum artigo PUBLISHED encontrado, buscando sem filtro de status...");
-        response = await api.get(
-          `/article-author/${columnistId}?page=${page}&limit=${limit}`,
-        );
-        console.log("Response sem filtro de status:", response.data);
-      }
       
       // Verificar se a resposta tem a estrutura esperada
       if (response.data && response.data.data) {

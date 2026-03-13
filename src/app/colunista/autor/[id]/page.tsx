@@ -29,20 +29,12 @@ export default function ColumnistPage() {
   const [page, setPage] = useState(1);
   const LIMIT = 12;
 
-  console.log("ID do colunista:", id);
-  console.log("columnistArticles state:", columnistArticles);
-
   useEffect(() => {
     if (id && typeof id === "string") {
-      console.log("Buscando artigos do colunista:", id, "- Página:", page);
       GetColumnistArticles(id, page, LIMIT);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, page]);
-
-  useEffect(() => {
-    console.log("Artigos do colunista atualizados:", columnistArticles);
-  }, [columnistArticles]);
 
   useEffect(() => {
     if (!columnists) {
@@ -244,14 +236,8 @@ export default function ColumnistPage() {
                   )}
                 </>
               ) : (
-                <div className="flex flex-col items-center justify-center py-20">
-                  <p className="text-gray-500 mb-2">Nenhum artigo encontrado</p>
-                  {!loading && (
-                    <p className="text-xs text-gray-400">
-                      Estado: {columnistArticles ? 'columnistArticles existe' : 'columnistArticles é null'} 
-                      {columnistArticles?.data ? ` - ${columnistArticles.data.length} artigos` : ''}
-                    </p>
-                  )}
+                <div className="flex items-center justify-center py-20">
+                  <p className="text-gray-500">Nenhum artigo publicado encontrado</p>
                 </div>
               )}
             </div>
