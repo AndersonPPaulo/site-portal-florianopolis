@@ -153,7 +153,7 @@ export default function PostGridWwithColumnistSection() {
   return (
     <section className="w-full sm:py-0 sm:px-6 lg:px-10 mx-auto max-w-7xl">
       <div
-        className={`flex flex-col mb-4 ${
+        className={`flex flex-col mb-16 ${
           noSlug ? "lg:flex-row" : "lg:flex-row"
         } gap-10`}
       >
