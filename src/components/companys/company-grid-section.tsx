@@ -173,7 +173,7 @@ export function CompanyGridSection() {
 
   return (
     <section
-      className={`w-full max-w-[1272px] mx-auto px-4 ${
+      className={`w-full max-w-[1272px] mx-auto px-4 md:mt-16${
         !isArticlePage ? "mt-8 md:mt-16 py-2" : ""
       }`}
     >
