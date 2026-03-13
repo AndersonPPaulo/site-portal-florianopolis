@@ -157,6 +157,7 @@ export default function PostGridWwithColumnistSection() {
           noSlug ? "lg:flex-row" : "lg:flex-row"
         } gap-10`}
       >
+        
         {gridPosts.map((post, idx) => (
           <ColumnistPostItem
             key={post.id}
