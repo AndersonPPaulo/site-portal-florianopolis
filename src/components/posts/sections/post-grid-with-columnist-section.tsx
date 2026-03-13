@@ -153,7 +153,7 @@ export default function PostGridWwithColumnistSection() {
   return (
     <section className="w-full sm:py-0 sm:px-6 lg:px-10 mx-auto max-w-7xl">
       <div
-        className={`flex flex-col ${
+        className={`flex flex-col mb-4 ${
           noSlug ? "lg:flex-row" : "lg:flex-row"
         } gap-10`}
       >
@@ -168,9 +168,7 @@ export default function PostGridWwithColumnistSection() {
             gridSize={gridPosts.length}
           />
         ))}
-        <div className="mb-16">
           <ColumnistCardWidget noSlug={noSlug} />
-        </div>
       </div>
     </section>
   );
