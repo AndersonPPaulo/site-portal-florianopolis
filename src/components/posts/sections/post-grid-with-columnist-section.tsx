@@ -168,7 +168,7 @@ export default function PostGridWwithColumnistSection() {
             gridSize={gridPosts.length}
           />
         ))}
-        <div className="mb-14">
+        <div className="mb-16">
           <ColumnistCardWidget noSlug={noSlug} />
         </div>
       </div>
