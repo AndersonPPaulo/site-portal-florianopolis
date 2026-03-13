@@ -50,7 +50,7 @@ export default function ColumnistCardWidget({
                 {/* Link do Colunista */}
                 <Link
                   href={`/colunista/autor/${columnist.id}`}
-                  className="flex items-center gap-3 hover:opacity-80 transition"
+                  className="flex items-center gap-3 mb-15 hover:opacity-80 transition"
                 >
                   <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
                     {columnist.user_image?.url ? (
@@ -72,7 +72,7 @@ export default function ColumnistCardWidget({
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="text-sm font-semibold text-gray-800 truncate">
-                      {columnist.topic}
+                       {columnist.topic}
                     </h4>
                     {columnist.topic && (
                       <p className="text-xs text-gray-600 truncate">
