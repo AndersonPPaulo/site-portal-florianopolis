@@ -100,7 +100,7 @@ export default function ColumnistPage() {
                 </div>
               ) : columnistArticles && columnistArticles.data && columnistArticles.data.length > 0 ? (
                 <>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {columnistArticles.data.slice(0, 6).map((article) => (
                       <Link
                         key={article.id}
@@ -158,7 +158,7 @@ export default function ColumnistPage() {
 
                   {/* Restante dos artigos */}
                   {columnistArticles.data.length > 6 && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
                       {columnistArticles.data.slice(6).map((article) => (
                         <Link
                           key={article.id}
