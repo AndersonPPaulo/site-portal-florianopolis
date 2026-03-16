@@ -28,9 +28,13 @@ export default function PostTopGridSection({
     GetPublishedArticles({});
   }, []);
 
-  // Filtra para remover o post atual antes de ordenar
+  // Filtra para remover o post atual e notícias de colunistas
   const filteredPosts =
-    publishedArticles?.data.filter((post) => post.id !== currentPostId) || [];
+    publishedArticles?.data.filter(
+      (post) =>
+        post.id !== currentPostId &&
+        !post.category.name.toLowerCase().includes("colunista"),
+    ) || [];
 
   const sortedPosts = filteredPosts
     .sort((a, b) => {
