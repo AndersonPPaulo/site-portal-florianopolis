@@ -16,8 +16,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "../ui/breadcrumb";
-import { useContext, useEffect, useRef, useState, useMemo } from "react";
-import { ArticleContext } from "@/provider/article";
+import { useContext, useEffect, useRef, useState } from "react";
+import { ArticleContext, type Article } from "@/provider/article";
 import { formatDate } from "@/utils/formatDate";
 import { ArticleAnalyticsContext } from "@/provider/analytics/article";
 import default_image from "@/assets/no-img.png";
@@ -49,13 +49,17 @@ export default function PostPage() {
   const [hasTrackedInitialView, setHasTrackedInitialView] = useState(false);
   const lastTrackedArticleId = useRef<string | null>(null);
   const currentSlugRef = useRef<string | null>(null);
+  const [currentSlug, setCurrentSlug] = useState<string | null>(null);
+  const [sidePosts, setSidePosts] = useState<Article[]>([]);
 
   useEffect(() => {
     if (slug.slug?.toString()) {
       console.log("🔄 [RESET] Trocando para novo artigo:", slug.slug);
 
-      // Atualiza o slug atual
-      currentSlugRef.current = slug.slug.toString();
+      const newSlug = slug.slug.toString();
+      currentSlugRef.current = newSlug;
+      setCurrentSlug(newSlug);
+      setSidePosts([]); // limpa imediatamente para não mostrar dados antigos
 
       // Reset do tracking ANTES de carregar novo artigo
       setHasTrackedInitialView(false);
@@ -64,12 +68,42 @@ export default function PostPage() {
 
       console.log("🔄 [RESET] Estados resetados");
 
-      Promise.all([
-        GetArticleBySlug(slug.slug?.toString()),
-        GetPublishedArticles({ category_name: slug.name?.toString() }),
-      ]);
+      GetArticleBySlug(newSlug);
     }
   }, [slug.slug, slug.name]);
+
+  // Busca side posts baseado no tipo do artigo (colunista ou não)
+  useEffect(() => {
+    if (!articleBySlug || articleBySlug.slug !== currentSlugRef.current) return;
+
+    const isColumnist = normalizeText(articleBySlug.category.name).includes("colunista");
+
+    if (isColumnist) {
+      GetPublishedArticles({
+        creatorId: articleBySlug.creator.id,
+        category_name: articleBySlug.category.name,
+        limit: 6,
+      });
+    } else {
+      GetPublishedArticles({
+        category_name: articleBySlug.category.name,
+        limit: 6,
+      });
+    }
+  }, [articleBySlug?.id]);
+
+  // Popula side posts locais apenas quando os dados correspondem ao slug atual
+  useEffect(() => {
+    if (!articleBySlug || articleBySlug.slug !== currentSlugRef.current) return;
+    if (!publishedArticles?.data) return;
+
+    const filtered = publishedArticles.data
+      .filter((post) => post.id !== articleBySlug.id)
+      .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+      .slice(0, 5);
+
+    setSidePosts(filtered);
+  }, [publishedArticles?.data, articleBySlug?.id]);
 
   // Tracking de view inicial quando o artigo é carregado
   useEffect(() => {
@@ -194,11 +228,8 @@ export default function PostPage() {
     };
   }, [articleBySlug?.id, articleBySlug?.slug, articleBySlug?.title]);
 
-  const sidePosts = useMemo(() => {
-    return publishedArticles?.data
-      ?.filter((post) => post.id !== articleBySlug?.id)
-      ?.slice(0, 5);
-  }, [publishedArticles?.data, articleBySlug?.id]);
+  // Artigo exibido somente quando corresponde ao slug atual (evita flash de dado antigo)
+  const displayArticle = articleBySlug?.slug === currentSlug ? articleBySlug : null;
 
   return (
     <section className="flex flex-col gap-6 mx-auto max-w-[1272px] justify-between">
@@ -219,7 +250,7 @@ export default function PostPage() {
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbPage className="capitalize text-primary font-semibold">
-              {articleBySlug?.title}
+              {displayArticle?.title}
             </BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
@@ -232,25 +263,25 @@ export default function PostPage() {
 
               <div className="flex flex-col gap-4 justify-between">
                 <h1 className="text-4xl max-w-[820px] font-[700] ">
-                  {articleBySlug?.title}
+                  {displayArticle?.title}
                 </h1>
 
                 <span
                   className={`${
-                    articleBySlug?.resume_content ? "block" : "hidden"
+                    displayArticle?.resume_content ? "block" : "hidden"
                   } max-w-[850px] text-sm text-[#363636] line-clamp-5`}
                 >
-                  {articleBySlug?.resume_content}
+                  {displayArticle?.resume_content}
                 </span>
 
                 <div className="flex w-full justify-between">
                   <div className="flex items-center mt-2 gap-4">
                     <span className="w-min text-xs bg-secondary text-primary px-3 py-1 rounded-2xl">
-                      {articleBySlug?.category.name}
+                      {displayArticle?.category.name}
                     </span>
-                    {articleBySlug && (
+                    {displayArticle && (
                       <p className="text-xs text-gray-500">
-                        {formatDate(articleBySlug.created_at)}
+                        {formatDate(displayArticle.created_at)}
                       </p>
                     )}
                   </div>
@@ -259,22 +290,18 @@ export default function PostPage() {
 
               {/* imagem */}
               <div className="relative max-w-[340px] lg:max-w-[840px] h-[250px] md:h-[475px] rounded-md overflow-hidden">
-                {articleBySlug?.thumbnail?.url ? (
+                {displayArticle?.thumbnail?.url ? (
                   <Image
                     unoptimized
                     src={
-                      articleBySlug &&
-                      articleBySlug.thumbnail &&
-                      articleBySlug.thumbnail.url
-                        ? articleBySlug.thumbnail.url
+                      displayArticle.thumbnail.url
+                        ? displayArticle.thumbnail.url
                         : default_image
                     }
                     alt={
-                      articleBySlug &&
-                      articleBySlug.title &&
-                      articleBySlug.title
-                        ? articleBySlug.title
-                        : "Imagem do portal lorianópolis"
+                      displayArticle.title
+                        ? displayArticle.title
+                        : "Imagem do portal Florianópolis"
                     }
                     fill
                     className="object-contain"
@@ -292,9 +319,9 @@ export default function PostPage() {
 
               <span className="text-xs text-[#757575]">
                 Foto:{" "}
-                {articleBySlug?.thumbnail?.description
-                  ? articleBySlug?.thumbnail?.description
-                  : !articleBySlug?.thumbnail?.url
+                {displayArticle?.thumbnail?.description
+                  ? displayArticle?.thumbnail?.description
+                  : !displayArticle?.thumbnail?.url
                     ? "Sem imagem cadastrada no momento"
                     : "Imagem pertencente a noticia do Portal"}
               </span>
@@ -320,15 +347,15 @@ export default function PostPage() {
     [&_img]:w-full [&_img]:h-auto [&_img]:my-4 [&_img]:rounded-md
   "
                 dangerouslySetInnerHTML={{
-                  __html: articleBySlug?.content || "",
+                  __html: displayArticle?.content || "",
                 }}
               />
 
               {/* Galeria de fotos */}
-              {articleBySlug?.gallery &&
+              {displayArticle?.gallery &&
                 (() => {
                   try {
-                    const gallery = JSON.parse(articleBySlug.gallery);
+                    const gallery = JSON.parse(displayArticle.gallery);
                     return Array.isArray(gallery) && gallery.length > 0 ? (
                       <div className="max-w-[800px] lg:max-w-[1200px] mb-10">
                         <h3 className="text-2xl font-semibold mb-4">
@@ -380,8 +407,8 @@ export default function PostPage() {
                 ref={whatsappButtonRef} 
                 className="mb-5"
                 onClick={() => {
-                  if (articleBySlug?.id) {
-                    TrackArticleWhatsappClick(articleBySlug.id);
+                  if (displayArticle?.id) {
+                    TrackArticleWhatsappClick(displayArticle.id);
                   }
                 }}
               >
@@ -413,7 +440,7 @@ export default function PostPage() {
                       )}/${post.slug}`,
                       clickPosition: "side-post-item",
                       sidePostIndex: idx,
-                      currentPostId: articleBySlug?.id,
+                      currentPostId: displayArticle?.id,
                       timestamp: new Date().toISOString(),
                     });
                   }}
@@ -465,7 +492,7 @@ export default function PostPage() {
       </div>
 
       <CompanyGridSection />
-      <PostTopGridSection currentPostId={articleBySlug?.id} />
+      <PostTopGridSection currentPostId={displayArticle?.id} />
     </section>
   );
 }
