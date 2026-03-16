@@ -36,7 +36,6 @@ export default function PostPage() {
     GetArticleBySlug,
     articleBySlug,
     GetPublishedArticles,
-    publishedArticles,
   } = useContext(ArticleContext);
 
   const { TrackArticleViewEnd, TrackArticleView, TrackArticleClick, TrackArticleWhatsappClick } =
@@ -72,38 +71,32 @@ export default function PostPage() {
     }
   }, [slug.slug, slug.name]);
 
-  // Busca side posts baseado no tipo do artigo (colunista ou não)
+  // Busca e popula side posts usando a resposta direta da Promise
+  // (evita usar publishedArticles do contexto que pode estar desatualizado)
   useEffect(() => {
     if (!articleBySlug || articleBySlug.slug !== currentSlugRef.current) return;
 
+    const articleId = articleBySlug.id;
+    const articleSlug = articleBySlug.slug;
     const isColumnist = normalizeText(articleBySlug.category.name).includes("colunista");
 
-    if (isColumnist) {
-      GetPublishedArticles({
-        creatorId: articleBySlug.creator.id,
-        category_name: articleBySlug.category.name,
-        limit: 6,
-      });
-    } else {
-      GetPublishedArticles({
-        category_name: articleBySlug.category.name,
-        limit: 6,
-      });
-    }
+    const fetchParams = isColumnist
+      ? { creatorId: articleBySlug.creator.id, category_name: articleBySlug.category.name, limit: 6 }
+      : { category_name: articleBySlug.category.name, limit: 6 };
+
+    GetPublishedArticles(fetchParams).then((response) => {
+      // Ignora resultado se o usuário já navegou para outro artigo
+      if (currentSlugRef.current !== articleSlug) return;
+      if (!response?.data) return;
+
+      const filtered = response.data
+        .filter((post) => post.id !== articleId)
+        .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+        .slice(0, 5);
+
+      setSidePosts(filtered);
+    });
   }, [articleBySlug?.id]);
-
-  // Popula side posts locais apenas quando os dados correspondem ao slug atual
-  useEffect(() => {
-    if (!articleBySlug || articleBySlug.slug !== currentSlugRef.current) return;
-    if (!publishedArticles?.data) return;
-
-    const filtered = publishedArticles.data
-      .filter((post) => post.id !== articleBySlug.id)
-      .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-      .slice(0, 5);
-
-    setSidePosts(filtered);
-  }, [publishedArticles?.data, articleBySlug?.id]);
 
   // Tracking de view inicial quando o artigo é carregado
   useEffect(() => {
