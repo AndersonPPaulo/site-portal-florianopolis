@@ -90,7 +90,13 @@ export default function PostPage() {
       if (!response?.data) return;
 
       const filtered = response.data
-        .filter((post) => post.id !== articleId)
+        .filter((post) => {
+          if (post.id === articleId) return false;
+          const postIsColumnist = post.creator.role?.name.toLowerCase() === "colunista";
+          // notícia de colunista: só mostra outros do mesmo colunista
+          // notícia normal: nunca mostra de colunista
+          return isColumnist ? postIsColumnist : !postIsColumnist;
+        })
         .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
         .slice(0, 5);
 
