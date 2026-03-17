@@ -86,30 +86,22 @@ export default function PostPage() {
 
     GetPublishedArticles(fetchParams)
       .then((response) => {
-        console.log("[SidePosts] response:", response);
-        console.log("[SidePosts] currentSlugRef:", currentSlugRef.current, "articleSlug:", articleSlug);
-
         // Ignora resultado se o usuário já navegou para outro artigo
-        if (currentSlugRef.current !== articleSlug) {
-          console.log("[SidePosts] slug mudou, ignorando");
-          return;
-        }
+        if (currentSlugRef.current !== articleSlug) return;
 
         const data = response?.data ?? [];
-        console.log("[SidePosts] data length:", data.length);
 
         const filtered = data
           .filter((post) => {
             if (post.id === articleId) return false;
-            // sem dados de creator: mostra sempre
+            if (isColumnist) return true; // API já filtrou por creatorId, todos são deste colunista
+            // notícia normal: exclui colunistas apenas quando o dado de role está disponível
             if (!post.creator?.role) return true;
-            const postIsColumnist = post.creator.role.name?.toLowerCase() === "colunista";
-            return isColumnist ? postIsColumnist : !postIsColumnist;
+            return post.creator.role.name?.toLowerCase() !== "colunista";
           })
           .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
           .slice(0, 5);
 
-        console.log("[SidePosts] filtered length:", filtered.length);
         setSidePosts(filtered);
       })
       .catch((err) => {
