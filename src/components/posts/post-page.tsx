@@ -78,10 +78,10 @@ export default function PostPage() {
 
     const articleId = articleBySlug.id;
     const articleSlug = articleBySlug.slug;
-    const isColumnist = normalizeText(articleBySlug.category.name).includes("colunista");
+    const isColumnist = articleBySlug.creator.role?.name.toLowerCase() === "colunista";
 
     const fetchParams = isColumnist
-      ? { creatorId: articleBySlug.creator.id, category_name: articleBySlug.category.name, limit: 6 }
+      ? { creatorId: articleBySlug.creator.id, limit: 6 }
       : { category_name: articleBySlug.category.name, limit: 6 };
 
     GetPublishedArticles(fetchParams).then((response) => {

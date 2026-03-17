@@ -28,12 +28,12 @@ export default function PostTopGridSection({
     GetPublishedArticles({});
   }, []);
 
-  // Filtra para remover o post atual e notícias de colunistas
+  // Filtra para remover o post atual e notícias de colunistas (por role do creator)
   const filteredPosts =
     publishedArticles?.data.filter(
       (post) =>
         post.id !== currentPostId &&
-        !post.category.name.toLowerCase().includes("colunista"),
+        post.creator.role?.name.toLowerCase() !== "colunista",
     ) || [];
 
   const sortedPosts = filteredPosts
