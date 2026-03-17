@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useContext, useEffect } from "react";
-import { useArticleViewTracking } from "@/hooks/useIntersectionObserverArticle";
 import { usePathname } from "next/navigation";
 import { ArticleContext } from "@/provider/article";
 import { ArticleAnalyticsContext } from "@/provider/analytics/article";
@@ -20,9 +19,7 @@ export default function PostTopGridSection({
 
   const { GetPublishedArticles, publishedArticles } =
     useContext(ArticleContext);
-  const { TrackArticleClick, TrackArticleView } = useContext(
-    ArticleAnalyticsContext,
-  );
+  const { TrackArticleClick } = useContext(ArticleAnalyticsContext);
 
   useEffect(() => {
     GetPublishedArticles({});
@@ -33,7 +30,7 @@ export default function PostTopGridSection({
     publishedArticles?.data.filter(
       (post) =>
         post.id !== currentPostId &&
-        post.creator.role?.name.toLowerCase() !== "colunista",
+        post.creator?.role?.name.toLowerCase() !== "colunista",
     ) || [];
 
   const sortedPosts = filteredPosts
@@ -88,10 +85,7 @@ export default function PostTopGridSection({
             key={post.id}
             post={post}
             index={idx}
-            pathname={pathname}
             handleTopGridPostClick={handleTopGridPostClick}
-            TrackArticleView={TrackArticleView}
-            topPostsLength={topPosts.length}
           />
         ))}
       </div>
@@ -102,10 +96,7 @@ export default function PostTopGridSection({
 function TopPostItem({
   post,
   index,
-  pathname,
   handleTopGridPostClick,
-  TrackArticleView,
-  topPostsLength,
 }: any) {
   // Analytics desativado: top post tracking
   // const trackingData = {

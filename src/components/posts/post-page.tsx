@@ -78,7 +78,7 @@ export default function PostPage() {
 
     const articleId = articleBySlug.id;
     const articleSlug = articleBySlug.slug;
-    const isColumnist = articleBySlug.creator.role?.name.toLowerCase() === "colunista";
+    const isColumnist = articleBySlug.creator?.role?.name.toLowerCase() === "colunista";
 
     const fetchParams = isColumnist
       ? { creatorId: articleBySlug.creator.id, limit: 6 }
@@ -92,7 +92,7 @@ export default function PostPage() {
       const filtered = response.data
         .filter((post) => {
           if (post.id === articleId) return false;
-          const postIsColumnist = post.creator.role?.name.toLowerCase() === "colunista";
+          const postIsColumnist = post.creator?.role?.name.toLowerCase() === "colunista";
           // notícia de colunista: só mostra outros do mesmo colunista
           // notícia normal: nunca mostra de colunista
           return isColumnist ? postIsColumnist : !postIsColumnist;
