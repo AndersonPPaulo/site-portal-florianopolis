@@ -84,26 +84,37 @@ export default function PostPage() {
       ? { creatorId: articleBySlug.creator.id, limit: 6 }
       : { category_name: articleBySlug.category.name, limit: 6 };
 
-    GetPublishedArticles(fetchParams).then((response) => {
-      // Ignora resultado se o usuário já navegou para outro artigo
-      if (currentSlugRef.current !== articleSlug) return;
-      if (!response?.data) return;
+    GetPublishedArticles(fetchParams)
+      .then((response) => {
+        console.log("[SidePosts] response:", response);
+        console.log("[SidePosts] currentSlugRef:", currentSlugRef.current, "articleSlug:", articleSlug);
 
-      const filtered = response.data
-        .filter((post) => {
-          if (post.id === articleId) return false;
-          // sem dados de creator: mostra sempre
-          if (!post.creator?.role) return true;
-          const postIsColumnist = post.creator?.role?.name?.toLowerCase() === "colunista";
-          // notícia de colunista: só mostra outros do mesmo colunista
-          // notícia normal: nunca mostra de colunista
-          return isColumnist ? postIsColumnist : !postIsColumnist;
-        })
-        .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-        .slice(0, 5);
+        // Ignora resultado se o usuário já navegou para outro artigo
+        if (currentSlugRef.current !== articleSlug) {
+          console.log("[SidePosts] slug mudou, ignorando");
+          return;
+        }
 
-      setSidePosts(filtered);
-    });
+        const data = response?.data ?? [];
+        console.log("[SidePosts] data length:", data.length);
+
+        const filtered = data
+          .filter((post) => {
+            if (post.id === articleId) return false;
+            // sem dados de creator: mostra sempre
+            if (!post.creator?.role) return true;
+            const postIsColumnist = post.creator.role.name?.toLowerCase() === "colunista";
+            return isColumnist ? postIsColumnist : !postIsColumnist;
+          })
+          .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+          .slice(0, 5);
+
+        console.log("[SidePosts] filtered length:", filtered.length);
+        setSidePosts(filtered);
+      })
+      .catch((err) => {
+        console.error("[SidePosts] erro ao buscar:", err);
+      });
   }, [articleBySlug?.id]);
 
   // Tracking de view inicial quando o artigo é carregado
