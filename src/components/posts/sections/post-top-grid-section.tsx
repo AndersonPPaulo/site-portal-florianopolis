@@ -30,7 +30,7 @@ export default function PostTopGridSection({
     publishedArticles?.data.filter(
       (post) =>
         post.id !== currentPostId &&
-        post.creator?.role?.name.toLowerCase() !== "colunista",
+        post.creator?.role?.name?.toLowerCase() !== "colunista",
     ) || [];
 
   const sortedPosts = filteredPosts
