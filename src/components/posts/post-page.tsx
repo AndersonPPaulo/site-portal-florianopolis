@@ -92,7 +92,9 @@ export default function PostPage() {
       const filtered = response.data
         .filter((post) => {
           if (post.id === articleId) return false;
-          const postIsColumnist = post.creator?.role?.name.toLowerCase() === "colunista";
+          // sem dados de creator: mostra sempre
+          if (!post.creator?.role) return true;
+          const postIsColumnist = post.creator.role.name.toLowerCase() === "colunista";
           // notícia de colunista: só mostra outros do mesmo colunista
           // notícia normal: nunca mostra de colunista
           return isColumnist ? postIsColumnist : !postIsColumnist;
