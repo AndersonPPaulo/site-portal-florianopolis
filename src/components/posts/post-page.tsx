@@ -32,14 +32,15 @@ function normalizeText(text: string): string {
 }
 
 export default function PostPage() {
-  const {
-    GetArticleBySlug,
-    articleBySlug,
-    GetPublishedArticles,
-  } = useContext(ArticleContext);
+  const { GetArticleBySlug, articleBySlug, GetPublishedArticles } =
+    useContext(ArticleContext);
 
-  const { TrackArticleViewEnd, TrackArticleView, TrackArticleClick, TrackArticleWhatsappClick } =
-    useContext(ArticleAnalyticsContext);
+  const {
+    TrackArticleViewEnd,
+    TrackArticleView,
+    TrackArticleClick,
+    TrackArticleWhatsappClick,
+  } = useContext(ArticleAnalyticsContext);
 
   const slug = useParams();
   const pathname = usePathname();
@@ -78,7 +79,8 @@ export default function PostPage() {
 
     const articleId = articleBySlug.id;
     const articleSlug = articleBySlug.slug;
-    const isColumnist = articleBySlug.creator?.role?.name?.toLowerCase() === "colunista";
+    const isColumnist =
+      articleBySlug.creator?.role?.name?.toLowerCase() === "colunista";
 
     const fetchParams = isColumnist
       ? { creatorId: articleBySlug.creator.id, limit: 6 }
@@ -99,7 +101,11 @@ export default function PostPage() {
             if (!post.creator?.role) return true;
             return post.creator.role.name?.toLowerCase() !== "colunista";
           })
-          .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+          .sort(
+            (a, b) =>
+              new Date(b.created_at).getTime() -
+              new Date(a.created_at).getTime(),
+          )
           .slice(0, 5);
 
         setSidePosts(filtered);
@@ -233,7 +239,8 @@ export default function PostPage() {
   }, [articleBySlug?.id, articleBySlug?.slug, articleBySlug?.title]);
 
   // Artigo exibido somente quando corresponde ao slug atual (evita flash de dado antigo)
-  const displayArticle = articleBySlug?.slug === currentSlug ? articleBySlug : null;
+  const displayArticle =
+    articleBySlug?.slug === currentSlug ? articleBySlug : null;
 
   return (
     <section className="flex flex-col gap-6 mx-auto max-w-[1272px] justify-between">
@@ -407,8 +414,8 @@ export default function PostPage() {
                 })()}
 
               {/* Botão CTA com observer para view_end */}
-              <div 
-                ref={whatsappButtonRef} 
+              <div
+                ref={whatsappButtonRef}
                 className="mb-5"
                 onClick={() => {
                   if (displayArticle?.id) {

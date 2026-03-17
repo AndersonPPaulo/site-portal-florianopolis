@@ -98,7 +98,9 @@ export default function ColumnistPage() {
                 <div className="flex items-center justify-center py-20">
                   <p className="text-gray-500">Carregando artigos...</p>
                 </div>
-              ) : columnistArticles && columnistArticles.data && columnistArticles.data.length > 0 ? (
+              ) : columnistArticles &&
+                columnistArticles.data &&
+                columnistArticles.data.length > 0 ? (
                 <>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {columnistArticles.data.slice(0, 6).map((article) => (
@@ -237,7 +239,9 @@ export default function ColumnistPage() {
                 </>
               ) : (
                 <div className="flex items-center justify-center py-20">
-                  <p className="text-gray-500">Nenhum artigo publicado encontrado</p>
+                  <p className="text-gray-500">
+                    Nenhum artigo publicado encontrado
+                  </p>
                 </div>
               )}
             </div>
